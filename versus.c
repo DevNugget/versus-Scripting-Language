@@ -9,6 +9,8 @@ enum TokenType {
   String,
   Plus,
   Minus,
+  Mul,
+  Div,
   Identifier,
   Keyword,
   LParan,
@@ -76,6 +78,7 @@ struct Token* lex(char* text) {
       
       tokens_append(tokens, &token_count, add_token);
       advance(&pos, &current_char, text);
+      
     } else if (current_char == '-') {
       struct Token min_token;
       enum TokenType token_type = Minus;
@@ -85,6 +88,28 @@ struct Token* lex(char* text) {
       min_token.line = line_count;
       
       tokens_append(tokens, &token_count, min_token);
+      advance(&pos, &current_char, text);
+      
+    } else if (current_char == '*') {
+      struct Token mul_token;
+      enum TokenType token_type = Mul;
+      
+      mul_token.type = token_type;
+      mul_token.value = current_char;
+      mul_token.line = line_count;
+      
+      tokens_append(tokens, &token_count, mul_token);
+      advance(&pos, &current_char, text);
+      
+    } else if (current_char == '/') {
+      struct Token div_token;
+      enum TokenType token_type = Div;
+      
+      div_token.type = token_type;
+      div_token.value = current_char;
+      div_token.line = line_count;
+      
+      tokens_append(tokens, &token_count, div_token);
       advance(&pos, &current_char, text);
     } else {
       advance(&pos, &current_char, text);
@@ -97,7 +122,7 @@ struct Token* lex(char* text) {
 }
 
 int main() {
-  char* input = "1 + 1\n1 - 1";
+  char* input = "1 + 1\n1 - 1\n2 * 2";
   struct Token* tokens = lex(input);
   for (int i = 0; i < tokens[0].line; i++) {
     printf("Token %d: type = %d, value = %c, line = %d\n", 
