@@ -49,6 +49,10 @@ std::vector<Token> Lexer::tokenize() {
 
             tokens.push_back(token);
             advance();
+        } else {
+            advance();
         }
     }
+
+    return tokens;
 }

@@ -10,7 +10,9 @@ enum TokenType {
     Plus,
     Minus,
     Mul,
-    Div
+    Div,
+    LeftParan,
+    RightParan,
 };
 
 struct Token {
