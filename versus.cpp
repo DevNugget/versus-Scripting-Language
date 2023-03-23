@@ -17,6 +17,38 @@ std::vector<Token> Lexer::tokenize() {
         } else if (current_char == '\n') {
             line_count++;
             advance();
+        } else if (current_char == '+') {
+            Token token;
+            token.type = Plus;
+            token.value = current_char;
+            token.line = line_count;
+
+            tokens.push_back(token);
+            advance();
+        } else if (current_char == '-') {
+            Token token;
+            token.type = Minus;
+            token.value = current_char;
+            token.line = line_count;
+
+            tokens.push_back(token);
+            advance();
+        } else if (current_char == '*') {
+            Token token;
+            token.type = Mul;
+            token.value = current_char;
+            token.line = line_count;
+
+            tokens.push_back(token);
+            advance();
+        } else if (current_char == '/') {
+            Token token;
+            token.type = Div;
+            token.value = current_char;
+            token.line = line_count;
+
+            tokens.push_back(token);
+            advance();
         }
     }
 }
