@@ -4,7 +4,7 @@
 
 int main() {
     Lexer lexer;
-    lexer.text = "1 + 1";
+    lexer.text = "(1 + 1)";
     std::vector<Token> tokens = lexer.tokenize();
 
     for (auto x : tokens) {

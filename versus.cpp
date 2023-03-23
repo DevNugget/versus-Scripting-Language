@@ -49,6 +49,22 @@ std::vector<Token> Lexer::tokenize() {
 
             tokens.push_back(token);
             advance();
+        } else if (current_char == '(') {
+            Token token;
+            token.type = LeftParan;
+            token.value = current_char;
+            token.line = line_count;
+
+            tokens.push_back(token);
+            advance();
+        } else if (current_char == ')') {
+            Token token;
+            token.type = RightParan;
+            token.value = current_char;
+            token.line = line_count;
+
+            tokens.push_back(token);
+            advance();
         } else {
             advance();
         }
