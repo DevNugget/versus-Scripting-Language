@@ -31,6 +31,7 @@ class Lexer {
     std::string text;
 
     std::vector<Token> tokenize();
+    Token create_number();
     void advance();
 };
 
